@@ -7,6 +7,9 @@ pub mod tree {
     //all core structure mustn't be changed
     pub type NodeLink = Rc<RefCell<Node>>;
 
+    //static t : Option<&NodeLink> = None;
+
+    #[derive(Clone)]
     pub struct Node {
         pub leaves: i32,
         pub value: i32,
@@ -92,11 +95,18 @@ pub mod tree {
          * This function will return the node that match value
          * Let's assume the tree won't have any value duplicates
          */
-        pub fn get_node_by_value(&self, value: i32) -> Option<Rc<RefCell<&Node>>> {
-            let nodelink = Rc::new(RefCell::new(self));
+        pub fn get_node_by_value(&self, value: i32) -> Option<NodeLink> {
+            let node = self.clone();
+            let nodelink = Rc::<RefCell<Node>>::downgrade(&node.get_node_link());
+            let strongnode = nodelink.upgrade();
+
+            
+
             if self.value == value {
-                return Some(nodelink);
+                return strongnode;
             }
+            
+
             None
         }
 
@@ -104,7 +114,7 @@ pub mod tree {
          * This function will return the node that matches all Nodelink Properties: 1). current node value, 2). node parent value, 3). both child values
          * Let's assume the tree won't have any value duplicates
          */
-        pub fn get_node_by_full_property(&self, node: &NodeLink) -> Option<&mut NodeLink> {
+        pub fn get_node_by_full_property(&self, node: &NodeLink) -> Option<NodeLink> {
             //TODO
             None
         }
