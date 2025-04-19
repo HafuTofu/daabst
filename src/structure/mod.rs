@@ -92,7 +92,11 @@ pub mod tree {
          * This function will return the node that match value
          * Let's assume the tree won't have any value duplicates
          */
-        pub fn get_node_by_value(&self, value: i32) -> Option<&mut NodeLink> {
+        pub fn get_node_by_value(&self, value: i32) -> Option<Rc<RefCell<&Node>>> {
+            let nodelink = Rc::new(RefCell::new(self));
+            if self.value == value {
+                return Some(nodelink);
+            }
             None
         }
 
