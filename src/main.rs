@@ -8,57 +8,66 @@ use crate::tool::generate_dotfile;
 
 fn main() {
     //create the nodelink of the root node
-    let rootlink: NodeLink = Node::new_nodelink(5);
+    let rootlink: NodeLink = Node::new_nodelink(88);
 
     //add a new left node value
-    //TODO
+    rootlink.clone().borrow_mut().add_left_child(&rootlink,48);
     //add a new right node value
-    //TODO
-
+    rootlink.clone().borrow_mut().add_right_child(&rootlink,888);
+    
+    
     //print the tree at this time
     let mut main_tree_path = "prime.dot";
     generate_dotfile(&rootlink, main_tree_path);
-
+    
     //add new child values to the left subtree
-    //TODO
+    let leftsub = &rootlink.clone().borrow().left.as_ref().unwrap().clone();
+    rootlink.clone().borrow_mut().add_right_child(&leftsub,84);
 
     //print the tree again, now been added with more values
     main_tree_path = "prime_t2";
     generate_dotfile(&rootlink, main_tree_path);
 
     //add new child values to the right subtree
-    //TODO
+    let rightsub = &rootlink.clone().borrow().right.as_ref().unwrap().clone();
+    rootlink.clone().borrow_mut().add_left_child(&rightsub,848);
 
     //Call tree depth function at this time
-    //TODO
-
+    let treedepth = rootlink.clone().borrow_mut().tree_depth();
+    println!("tree depth {}", treedepth);
+    
     //Call count_nodes function 
-    //TODO
-
+    let mut countnodes = rootlink.clone().borrow_mut().count_nodes();
+    println!("count nodes {}", countnodes);
+    
     //Call count_nodes_by_nodelink function, supplied right subtree as parameter
-    //TODO
-
+    countnodes = Node::count_nodes_by_nodelink(&rightsub);
+    println!("count nodes by nodelink {}", countnodes);
+    
     //Get the sibling of the leftsubtree from parent
-    //TODO
-
+    let sibling =Node::get_sibling(&leftsub);
+    println!("sibling of leftsubtree is {}", sibling.unwrap().borrow().value);
+    
     //get the left subtree by value
-    //TODO
-
+    rootlink.clone().borrow_mut().get_node_by_value(48);
+    
     //get the left subtree by full properties
-    //TODO
-
+    rootlink.clone().borrow_mut().get_node_by_full_property(&leftsub);
+    
     //Discard the right subtree from parent
-    //TODO
-
-    //print the tree again
     main_tree_path = "prime_t3";
     generate_dotfile(&rootlink, main_tree_path);
-
+    rootlink.clone().borrow_mut().discard_node_by_value(888);
+    
+    //print the tree again
+    
     //Call tree depth function at this time
-    //TODO
+    let treedepth = rootlink.clone().borrow_mut().tree_depth();
+    println!("tree depth {}", treedepth);
 
     //Call count_nodes function 
-    //TODO
+    countnodes = rootlink.clone().borrow_mut().count_nodes();
+    println!("count nodes {}", countnodes);
 
     //print the tree again
     main_tree_path = "prime_t4";

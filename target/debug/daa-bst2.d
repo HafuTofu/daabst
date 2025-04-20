@@ -1,1 +1,1 @@
-/home/hafutofu/Documents/DAA/daa-bst2/target/debug/daa-bst2: /home/hafutofu/Documents/DAA/daa-bst2/src/main.rs /home/hafutofu/Documents/DAA/daa-bst2/src/structure/mod.rs
+C:\Users\TOFU-PC\Documents\SEMESTER\ 4\ COMEBACK\DAA\ (Senin)\daabst\target\debug\daa-bst2.exe: C:\Users\TOFU-PC\Documents\SEMESTER\ 4\ COMEBACK\DAA\ (Senin)\daabst\src\main.rs C:\Users\TOFU-PC\Documents\SEMESTER\ 4\ COMEBACK\DAA\ (Senin)\daabst\src\structure\mod.rs C:\Users\TOFU-PC\Documents\SEMESTER\ 4\ COMEBACK\DAA\ (Senin)\daabst\src\tool\mod.rs
